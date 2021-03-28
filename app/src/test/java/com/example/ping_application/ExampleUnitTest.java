@@ -1,4 +1,4 @@
-package com.example.ping;
+package com.example.ping_application;
 
 import org.junit.Test;
 
