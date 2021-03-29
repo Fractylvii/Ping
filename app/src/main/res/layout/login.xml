@@ -16,7 +16,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="94dp" />
+            android:layout_height="38dp" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -40,7 +40,7 @@
                 android:layout_weight="1" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Username"
+                android:id="@+id/usernameText"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:hint="Username" />
@@ -66,7 +66,7 @@
                 android:layout_weight="1" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Password"
+                android:id="@+id/passwordText"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:hint="Password" />
@@ -83,7 +83,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="76dp"
             android:orientation="horizontal">
 
             <Space
@@ -92,7 +92,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/login"
+                android:id="@+id/loginButton"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:text="Login" />
@@ -101,6 +101,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/createAccountButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Account" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
     </LinearLayout>
