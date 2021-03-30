@@ -1,7 +1,6 @@
 package Ping;
 import java.util.ArrayList;
-/*Var's include aName, aBirthday, aDriver, aWeek, aContactList from Account class
- * Var's include cName, cPhoneNumber, cAccount from Contact class*/
+
 public class frontToBack {
     //from Account class
     public static String aName;
@@ -16,27 +15,113 @@ public class frontToBack {
     //from Day class
     public static String dDay;
     public static ArrayList<?> dEvents;
-
-
-
-    public static void getVar(){
-        Account AccountVar = new Account();
-        Contact ContactVar = new Contact();
-        Day DayVar = new Day();
-
+    //
+    static Account AccountVar = new Account();
+    static Contact ContactVar = new Contact();
+    static Day DayVar = new Day();
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //GET METHODS
+    /////////////////////////////////////////////////////////// Account
+    public static String getAName(){
         aName = AccountVar.getName();
+        return aName;
+    }
+    public static String getABirthday() {
         aBirthday = AccountVar.getBirthday();
+        return aBirthday;
+    }
+    public static boolean getADriver() {
         aDriver = AccountVar.isDriver();
+        return aDriver;
+    }
+    public static ArrayList<?> getAWeek(){
         aWeek = AccountVar.getWeek();
+        return aWeek;
+    }
+    public static ArrayList<?> getAContactList(){
         aContactList = AccountVar.getContacts();
-
+        return aContactList;
+    }
+    /////////////////////////////////////////////////////// Contact
+    public static String getCName(){
         cName = ContactVar.getName();
+        return cName;
+    }
+    public static String getCPhoneNumber() {
         cPhoneNumber = ContactVar.getPhone();
+        return cPhoneNumber;
+    }
+    public static Account getCAccount() {
         cAccount = ContactVar.getAccount();
-
+        return cAccount;
+    }
+    ////////////////////////////////////////////////////// Day
+    public static String getDDay() {
         dDay = DayVar.getDay();
+        return dDay;
+    }
+    public static ArrayList<?> getDEvents() {
         dEvents = DayVar.getEvents();
+        return dEvents;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //SET METHODS (includes adding, removing, and editing lists)
+    //////////////////////////////////////////////////////////////Account
+    public static void setAName(String name){
+        AccountVar.editName(name);
+    }
 
+        /* 									Birthdays unchangeable?
+        public static void setABirthday(String Birthday) {
+        AccountVar.editBirthday(Birthday);
+        }
+        */
+
+    public static void setADriver(boolean IsDriver) {
+        AccountVar.editDriver(IsDriver);
+    }
+    /*									Week (events?) unchangeable/ no set method?
+    public static void setAWeek(){
+     AccountVar.setWeek();
+    }
+    */
+    public static void addAContact(Contact newContact){
+        AccountVar.addContact(newContact);
+    }
+    public static void removeAContact(int index){
+        AccountVar.removeContact(index);
+    }
+    public static void removeAContact(Contact oldContact){
+        AccountVar.removeContact(oldContact);
+    }
+    //////////////////////////////////////////////////// Contact
+    public static void setCName(String newName){
+        ContactVar.editName(newName);
+    }
+
+    public static void setCPhoneNumber(String newPhone) {	//who dis
+        ContactVar.editPhone(newPhone);
+    }
+
+    public static void addCAccount(Account newAccount) {
+        ContactVar.addAccount(newAccount);
+    }
+
+    /*								Day unchangeable/no set method?
+    public void setDDay() {
+    DayVar.getDay();
+    }
+    */
+    //////////////////////////////////////////////////// Day
+    public static void addDEvents(String newEvent) {
+        DayVar.addEvent(newEvent);
+    }
+
+    public static void removeDEvents(int index) {
+        DayVar.removeEvent(index);
+    }
+    public static void editDEvents(int index, String newEvent) {
+        DayVar.editEvent(index, newEvent);
     }
 
 }
