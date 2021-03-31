@@ -1,4 +1,4 @@
-package com.example.ping_application.ui.slideshow;
+package com.example.ping_application.ui.contacts;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,28 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ping_application.R;
 
-public class SlideshowFragment extends Fragment {
+public class ContactsFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private ContactsViewModel ContactsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        ContactsViewModel =
+                new ViewModelProvider(this).get(ContactsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_contacts, container, false);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-
-            }
-        });
         return root;
     }
 }

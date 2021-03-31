@@ -16,12 +16,22 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
             <Button
                 android:id="@+id/bigButtonButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="244dp"
+                android:layout_height="156dp"
                 android:layout_gravity="center"
                 android:text="Press Me" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
 
         </LinearLayout>
