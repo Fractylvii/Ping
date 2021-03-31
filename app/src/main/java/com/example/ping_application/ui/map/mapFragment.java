@@ -1,4 +1,4 @@
-package com.example.ping_application.ui.home;
+package com.example.ping_application.ui.map;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,15 +11,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ping_application.R;
 
-public class HomeFragment extends Fragment {
+public class mapFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private mapViewModel mapViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        mapViewModel =
+                new ViewModelProvider(this).get(mapViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_map, container, false);
         return root;
     }
 }
