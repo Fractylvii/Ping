@@ -37,6 +37,7 @@
             android:id="@+id/editContactsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Contacts" />
+            android:text="Edit Contacts"
+            app:backgroundTint="@color/Primary" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

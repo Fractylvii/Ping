@@ -120,7 +120,8 @@
             android:id="@+id/editAccountButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Account" />
+            android:text="Edit Account"
+            app:backgroundTint="@color/Primary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -131,6 +132,7 @@
             android:id="@+id/editPreferencesButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Preferences" />
+            android:text="Edit Preferences"
+            app:backgroundTint="@color/Primary" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
