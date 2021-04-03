@@ -1,5 +1,6 @@
 package com.example.ping_application;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -36,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
-
     }
 
-
+    public void openMap(){
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

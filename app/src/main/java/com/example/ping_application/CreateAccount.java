@@ -23,6 +23,7 @@ public class CreateAccount extends AppCompatActivity {
         });
     }
 
+    //Opens the main activity to the application
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
