@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Account {
     private  String Name;
     private final String Birthday;
+    private String pNumber;
     private  boolean Driver;
     private final ArrayList<Day> Week;
     private final ArrayList<Contact> ContactList;
@@ -13,14 +14,16 @@ public class Account {
     public Account(){
         this.Name = "Default Name";
         this.Birthday = "01/01/1900";
+        this.pNumber = "0001112222";
         this.Driver = false;
         this.Week = new ArrayList<>();
         this.ContactList = new ArrayList<>();
     }
 
-    public Account(String Name, String Birthday, boolean Driver, ArrayList Week, ArrayList ContactList){
+    public Account(String Name, String Birthday, String pNumber, boolean Driver, ArrayList Week, ArrayList ContactList){
         this.Name = Name;
         this.Birthday = Birthday;
+        this.pNumber = pNumber;
         this.Driver = Driver;
         this.Week = Week;
         this.ContactList = ContactList;
@@ -33,6 +36,8 @@ public class Account {
     public String getBirthday(){
         return this.Birthday;
     }
+
+    public String getNumber() { return this.pNumber; }
 
     public boolean isDriver(){
         return this.Driver;
@@ -49,6 +54,8 @@ public class Account {
     public void editName(String name){
         this.Name = name;
     }
+
+    public void editNumber(String number) { this.pNumber = number;}
 
     public void editDriver(boolean driver){
         this.Driver = driver;

@@ -36,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        //setContentView(R.layout.login);
-        //AFTER LOGIN IS SUCCESSFUL, run this line VVVVVVVV
-        //setContentView(R.layout.activity_main);
+
+
+
     }
+
 
     
     @Override
