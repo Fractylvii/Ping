@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
+
+    EditText pas, usr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
                 openMain();
             }
         });
+
+        usr = (EditText) findViewById( R.id.username); //Get text from UI into code
+        pas = (EditText) findViewById( R.id.password);
     }
 
     public void openNewAccount() {
@@ -40,5 +46,14 @@ public class LoginActivity extends AppCompatActivity {
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void loginBtn(View view)
+    {
+        String user = usr.getText().toString(); // Turn UI values into Strings for Java
+        String pass = pas.getText().toString();
+
+        background bg = new background(this);
+        bg.execute(user,pass);
     }
 }
