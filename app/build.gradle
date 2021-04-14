@@ -4,7 +4,6 @@ plugins {
 
 android {
     compileSdkVersion 30
-	compile 'com.google.android.gms:play-services:7.0.0'
     buildToolsVersion "30.0.3"
 
     defaultConfig {
