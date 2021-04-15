@@ -19,40 +19,53 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_centerInParent="true"
         android:layout_margin="10dp"
-        android:padding="10dp"
-        android:layout_centerInParent="true">
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:padding="10dp">
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:text = "test"
-        android:id="@+id/username"
-        />
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="test"
+            android:textSize="25sp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:text = "test"
-        android:inputType="textPassword"
-        android:id="@+id/password"
-        />
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:textSize="25sp"
-        android:text="Login"
-        android:onClick="loginBtn"
-        app:backgroundTint="@color/Primary"
-        app:layout_constraintBottom_toTopOf="@+id/createAccountButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:text="test"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:onClick="loginBtn"
+            android:text="Login"
+            android:textSize="25sp"
+            app:backgroundTint="@color/Primary"
+            app:layout_constraintBottom_toTopOf="@+id/createAccountButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/createAccountButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:onClick="loginBtn"
+            android:text="Create New Account"
+            android:textSize="25sp"
+            app:backgroundTint="@color/Primary"
+            app:layout_constraintBottom_toTopOf="@+id/createAccountButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
     <!--
