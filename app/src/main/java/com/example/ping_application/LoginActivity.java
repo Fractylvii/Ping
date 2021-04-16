@@ -33,9 +33,15 @@ public class LoginActivity extends AppCompatActivity {
                 openMain();
             }
         });
+<<<<<<< HEAD
 */
-        usr = (EditText) findViewById( R.id.username); //Get text from UI into code
-        pas = (EditText) findViewById( R.id.password);
+       // usr = (EditText) findViewById( R.id.username); //Get text from UI into code
+        //pas = (EditText) findViewById( R.id.password);
+//=======
+
+        usr = (EditText) findViewById( R.id.usernameText); //Get text from UI into code
+        pas = (EditText) findViewById( R.id.passwordText);
+//>>>>>>> upstream/main
     }
 
     public void openNewAccount() {
