@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.view.View;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
