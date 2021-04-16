@@ -42,7 +42,7 @@ public class background extends AsyncTask <String, Void, String> {
         String user = voids[0];
         String pass = voids[1];
 
-        String connstr = "https:// localhost/login.php"; //PORT NUMBER??? "localhost:8080/login.php"
+        String connstr = "http://BLAH/login.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
 
         try {
             URL url = new URL(connstr);
