@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        Button newAccount = (Button) findViewById(R.id.createAccountButton);
+       /* Button newAccount = (Button) findViewById(R.id.createAccountButton);
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
                 //This is where we check the username and password
                 openMain();
             }
-        });
+        }); */
 
         usr = (EditText) findViewById( R.id.usernameText); //Get text from UI into code
         pas = (EditText) findViewById( R.id.passwordText);
