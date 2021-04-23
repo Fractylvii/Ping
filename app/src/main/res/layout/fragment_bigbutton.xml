@@ -11,7 +11,7 @@
         android:layout_width="326dp"
         android:layout_height="235dp"
         android:layout_gravity="center"
-        android:text="Press Me"
+        android:text="Need a Ride"
         android:textSize="64dp"
         app:backgroundTint="@color/Primary"
         app:layout_constraintBottom_toBottomOf="parent"
