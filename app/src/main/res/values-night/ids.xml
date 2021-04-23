@@ -2,12 +2,12 @@
 <resources>
     <item name="textView6" type="id" />
     <item name="textView8" type="id" />
-    <item name="textView12" type="id" />
+    <item name="AccountName" type="id" />
     <item name="textView9" type="id" />
-    <item name="textView13" type="id" />
+    <item name="AccountPhoneNumber" type="id" />
     <item name="textView10" type="id" />
-    <item name="textView14" type="id" />
+    <item name="AccountBirthday" type="id" />
     <item name="textView11" type="id" />
-    <item name="textView15" type="id" />
+    <item name="AccountDriver" type="id" />
     <item name="editPreferencesButton" type="id" />
 </resources>

@@ -34,7 +34,7 @@
         android:layout_height="45dp"
         android:layout_marginBottom="16dp"
         android:text="Edit Contacts"
-        app:backgroundTint="@color/Primary"
+        app:backgroundTint="@color/Secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

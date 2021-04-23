@@ -18,4 +18,28 @@
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp" />
 
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="75dp"
+        android:backgroundTint="#00cc00"
+        android:text="Accept"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/declineButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
+
+    <Button
+        android:id="@+id/declineButton"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="75dp"
+        android:text="Decline"
+        android:backgroundTint="#cc0000"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/acceptButton"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
