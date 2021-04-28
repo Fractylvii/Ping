@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -26,6 +27,9 @@ public class MapActivityETA extends FragmentActivity implements OnMapReadyCallba
 
     private LocationListener LocationListener;
     private LocationManager locationManager;
+
+    private TextView driver = (TextView) findViewById(R.id.DriverText);
+    private TextView eta = (TextView) findViewById(R.id.ETAText);
 
     private final long MIN_TIME = 1000; // 1 second
     private final long MIN_DIST = 5; // 5 Meters

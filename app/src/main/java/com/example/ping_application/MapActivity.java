@@ -9,7 +9,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.view.View;
+import android.widget.Button;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -27,6 +27,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
 
     private LocationListener LocationListener;
     private LocationManager locationManager;
+
+    private Button acceptButton = (Button) findViewById(R.id.acceptButton);
+    private Button rejectButton = (Button) findViewById(R.id.declineButton);
 
     private final long MIN_TIME = 1000; // 1 second
     private final long MIN_DIST = 5; // 5 Meters
