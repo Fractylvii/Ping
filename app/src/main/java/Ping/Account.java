@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Account {
     private  String Name;
     private final String Birthday;
-    private String pNumber;
+    public static String pNumber;
     private  boolean Driver;
     private final ArrayList<Day> Week;
     private final ArrayList<Contact> ContactList;
