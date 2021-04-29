@@ -21,6 +21,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import Ping.Account;
+
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
 
     GoogleMap map;
@@ -33,6 +35,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
 
     private final long MIN_TIME = 1000; // 1 second
     private final long MIN_DIST = 5; // 5 Meters
+
+    public static String pNumber;
 
     private LatLng latLng;
 
@@ -53,6 +57,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECEIVE_SMS}, PackageManager.PERMISSION_GRANTED);
 
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -76,16 +81,19 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
                 map.addMarker(new MarkerOptions().position(Myposition).title("My position"));
                 map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
-                String phoneNumber = "8325617849";
+                MapActivity.pNumber = Account.pNumber;
+                //String phoneNumber = "8325617849";
                 String myLatitude = String.valueOf(location.getLatitude());
                 String myLongitude = String.valueOf(location.getLongitude());
 
                 String message = "Latitude = " + myLatitude + "Longitude = " + myLongitude;
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNumber, null, message, null,null);
+                //smsManager.sendTextMessage(phoneNumber, null, message, null,null);
+                smsManager.sendTextMessage(pNumber, null, message, null,null);
 
                 ContentValues values = new ContentValues();
-                values.put("address", "8325617849");
+                //values.put("address", "8325617849");
+                values.put("address", pNumber);
                 values.put("body", message);
                 getContentResolver().insert(Uri.parse("content://sms/inbox"), values);
 
