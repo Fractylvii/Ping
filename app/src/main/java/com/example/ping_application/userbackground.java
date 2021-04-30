@@ -1,6 +1,5 @@
 package com.example.ping_application;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,19 +11,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class background extends AsyncTask <String, Void, String> {
+public class userbackground extends AsyncTask <String, Void, String> {
 
-    private boolean loginSuccess;
+    private boolean creationSuccess;
 
     AlertDialog dialog;
     Context context;
-    public background(Context context)
+    public userbackground(Context context)
     {
         this.context = context;
     }
@@ -32,7 +30,7 @@ public class background extends AsyncTask <String, Void, String> {
     @Override
     protected void onPreExecute() {
         dialog = new AlertDialog.Builder(context).create();
-        dialog.setTitle("Login Status");
+        dialog.setTitle("Create User Status");
     }
 
     @Override
@@ -40,7 +38,7 @@ public class background extends AsyncTask <String, Void, String> {
         dialog.setMessage(s);
         dialog.show();
 
-        if(loginSuccess == true) {
+        if(creationSuccess == true) {
             Intent intent = new Intent(context, MainActivity.class);
             context.startActivity(intent);
         }
@@ -49,12 +47,16 @@ public class background extends AsyncTask <String, Void, String> {
     @Override
     protected String doInBackground(String... voids) {
         String result = "";
-        String user = voids[0];
-        String pass = voids[1];
+        String username = voids[0];
+        String password = voids[1];
+        String fullName = voids[2];
+        String birthday = voids[3];
+        String phoneNum = voids[4];
+        String driverBool = voids[5];
 
-        loginSuccess = false; // Default
 
-        String connstr = "http://BLAH/login.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
+
+        String connstr = "http://BLAH/createuser.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
 
         try {
             URL url = new URL(connstr);
@@ -63,10 +65,16 @@ public class background extends AsyncTask <String, Void, String> {
             http.setDoInput(true);
             http.setDoOutput(true);
 
+            creationSuccess = false; // Default
+
             OutputStream ops = http.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
-            String data = URLEncoder.encode("user", "UTF-8")+"="+URLEncoder.encode(user, "UTF-8")
-                    +"&&"+URLEncoder.encode("pass", "UTF-8")+"="+URLEncoder.encode(pass, "UTF-8");
+            String data = URLEncoder.encode("username", "UTF-8")+"="+URLEncoder.encode(username, "UTF-8")
+                    +"&&"+URLEncoder.encode("password", "UTF-8")+"="+URLEncoder.encode(password, "UTF-8")
+                    +"&&"+URLEncoder.encode("fullName", "UTF-8")+"="+URLEncoder.encode(fullName, "UTF-8")
+                    +"&&"+URLEncoder.encode("birthday", "UTF-8")+"="+URLEncoder.encode(birthday, "UTF-8")
+                    +"&&"+URLEncoder.encode("phoneNum", "UTF-8")+"="+URLEncoder.encode(phoneNum, "UTF-8")
+                    +"&&"+URLEncoder.encode("driverBool", "UTF-8")+"="+URLEncoder.encode(driverBool, "UTF-8");
 
             writer.write(data);
             writer.flush();
@@ -85,12 +93,13 @@ public class background extends AsyncTask <String, Void, String> {
             ips.close();
             http.disconnect();
 
-            if(result.equals("Login successful!"))
+            if(result.equals("Account creation successful!"))
             {
-                loginSuccess = true;
+                creationSuccess = true;
             }
 
             return result;
+
         }
         catch (MalformedURLException e) {
             result = e.getMessage();
