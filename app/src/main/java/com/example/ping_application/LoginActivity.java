@@ -16,8 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
-       /* Button newAccount = (Button) findViewById(R.id.createAccountButton);
+        /*Button newAccount = (Button) findViewById(R.id.createAccountButton);
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //This is where we check the username and password
+
                 openMain();
             }
         }); */
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         pas = (EditText) findViewById( R.id.passwordText);
     }
 
-    public void openNewAccount() {
+    public void openNewAccount(View view) {
         Intent intent = new Intent(this, CreateAccount.class);
         startActivity(intent);
     }
