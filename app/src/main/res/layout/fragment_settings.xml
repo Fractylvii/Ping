@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView6"
@@ -129,7 +130,8 @@
         android:text="Edit Account"
         app:backgroundTint="@color/Primary"
         app:layout_constraintTop_toBottomOf="@+id/AccountDriver"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        android:onClick="editAccount"/>
 
     <Button
         android:id="@+id/editPreferencesButton"
@@ -139,5 +141,77 @@
         android:text="Edit Preferences"
         app:backgroundTint="@color/Primary"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nameInput"
+        android:layout_width="238dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="5000dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/birthdayInput"
+        android:layout_width="238dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/phoneInput"
+        android:layout_width="238dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthdayInput" />
+
+    <RadioGroup
+        android:id="@+id/driverInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneInput">
+
+        <RadioButton
+            android:id="@+id/dYes1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Yes" />
+
+        <Space
+            android:layout_width="39dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/dNo2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Confirm"
+        app:layout_constraintTop_toBottomOf="@+id/driverInput"
+        tools:layout_editor_absoluteX="-2dp"
+        android:onClick="confirmButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

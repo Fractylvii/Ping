@@ -51,7 +51,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_SMS}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECEIVE_SMS}, PackageManager.PERMISSION_GRANTED);
+    }
 
+    public void accept(){
+        acceptButton.setText("ACCEPTED!!!!");
     }
 
     @Override

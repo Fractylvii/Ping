@@ -51,8 +51,8 @@ public class MapActivityETA extends FragmentActivity implements OnMapReadyCallba
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_SMS}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECEIVE_SMS}, PackageManager.PERMISSION_GRANTED);
-
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -133,4 +133,6 @@ public class MapActivityETA extends FragmentActivity implements OnMapReadyCallba
         }
 
         }
-    }
+
+
+}
