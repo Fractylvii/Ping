@@ -1,9 +1,13 @@
 package com.example.ping_application;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,29 +24,23 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private CurrentUser currentUser;
 
-    TextView accName;
-    TextView accBirth;
-    TextView accPhone;
-    TextView accDriver;
-    EditText fullEdit;
-    EditText birthEdit;
-    EditText phoneEdit;
-    RadioGroup driveEdit;
-    RadioButton driveYes;
-    RadioButton driveNo;
+    private DatePickerDialog datePickerDialog;
+    private String dateofbirth;
+    private String driverBool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_settings);
-        TextView name = (TextView) findViewById(R.id.AccountName);
-        name.setText("Testing");
+        //setContentView(R.layout.fragment_settings);
+        //TextView name = (TextView) findViewById(R.id.AccountName);
+        //name.setText("Testing");
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,29 +57,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         currentUser = getIntent().getExtras().getParcelable("currUser");
-
-       /* accName = findViewById(R.id.AccountName);
-        accBirth = findViewById(R.id.AccountBirthday);
-        accPhone = findViewById(R.id.AccountPhoneNumber);
-        accDriver = findViewById(R.id.AccountDriver);
-        fullEdit = findViewById(R.id.nameInput);
-        birthEdit = findViewById(R.id.birthdayInput);
-        phoneEdit = findViewById(R.id.phoneInput);
-        driveEdit = findViewById(R.id.driverInput);
-        driveYes = findViewById(R.id.dYes1);
-        driveNo = findViewById(R.id.dNo2);
-
-        currentUser.printAllInfo();
-
-        accName.setText(currentUser.getFullName());
-        accBirth.setText(getDateString(currentUser.getBirthday()));
-        accPhone.setText(currentUser.getPhoneNum());
-        if(currentUser.getDriverBool().equals("TRUE")) {
-            accDriver.setText("Yes");
-        }
-        else {
-            accDriver.setText("No");
-        } */
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,7 +77,19 @@ public class MainActivity extends AppCompatActivity {
         params1.topMargin = 50;
         findViewById(R.id.nameInput).setLayoutParams(params1);
 
-        fullEdit.setText(accName.getText());
+        TextView accName = findViewById(R.id.AccountName);
+        TextView accBirth = findViewById(R.id.AccountBirthday);
+        TextView accPhone = findViewById(R.id.AccountPhoneNumber);
+        TextView accDriver = findViewById(R.id.AccountDriver);
+        EditText fullEdit = findViewById(R.id.nameInput);
+        Button birthEdit = findViewById(R.id.birthdayInput);
+        EditText phoneEdit = findViewById(R.id.phoneInput);
+        RadioButton driveYes = findViewById(R.id.dYes1);
+        RadioButton driveNo = findViewById(R.id.dNo2);
+
+        initDatePicker(birthEdit);
+
+        fullEdit.setText(accName.getText()); // Converts non-editable lines to editable lines
         birthEdit.setText(accBirth.getText());
         phoneEdit.setText(accPhone.getText());
         if(accDriver.getText().equals("No")) {
@@ -122,9 +109,28 @@ public class MainActivity extends AppCompatActivity {
         params1.topMargin = 5000;
         findViewById(R.id.nameInput).setLayoutParams(params1);
 
+        TextView accName = findViewById(R.id.AccountName);
+        TextView accBirth = findViewById(R.id.AccountBirthday);
+        TextView accPhone = findViewById(R.id.AccountPhoneNumber);
+        TextView accDriver = findViewById(R.id.AccountDriver);
+        EditText fullEdit = findViewById(R.id.nameInput);
+        Button birthEdit = findViewById(R.id.birthdayInput);
+        EditText phoneEdit = findViewById(R.id.phoneInput);
+        RadioGroup driveEdit = findViewById(R.id.driverInput);
+
         int selectedRadioButtonId = driveEdit.getCheckedRadioButtonId();
 
-        accName.setText(fullEdit.getText());
+        String uFull = fullEdit.getText().toString(); //Sends update to mySQL
+        String uPhone = phoneEdit.getText().toString();
+        updatebackground bg = new updatebackground(this);
+        bg.execute(uFull, dateofbirth, uPhone, driverBool, currentUser.getFullName(), currentUser.getPhoneNum());
+
+        currentUser.setFullName(uFull); //Updates Current User
+        currentUser.setBirthday(dateofbirth);
+        currentUser.setPhoneNum(uPhone);
+        currentUser.setDriverBool(driverBool);
+
+        accName.setText(fullEdit.getText()); //Converts editable lines to non-editable
         accBirth.setText(birthEdit.getText());
         accPhone.setText(phoneEdit.getText());
         RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
@@ -136,14 +142,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.AccountName).setLayoutParams(params2);
     }
 
-    private String makeDateString(int year, int month, int dayOfMonth)
+    private String makeDateString(int year, int month, int dayOfMonth) // Turns date slider into String for display
     {
-        String dateofbirth = year + "-" + month + "-" + dayOfMonth; //Formatted to pass to database
+        dateofbirth = year + "-" + month + "-" + dayOfMonth; //Formatted to pass to database
         String birthStr = getDateString(dateofbirth);
         return birthStr;
     }
 
-    private static String getDateString(String sqlDate)
+    private static String getDateString(String sqlDate) // Turns mySQL DATE into written String
     {
         String[] dateParts = sqlDate.split("-");
         String year = dateParts[0];
@@ -194,4 +200,56 @@ public class MainActivity extends AppCompatActivity {
         }
         return monthstr + " " + dayOfMonth + ", " + year;
     }
+
+    public CurrentUser passUser() { //Passes user object to other classes or fragments
+        return currentUser;
+    }
+
+    public void birthdayPicker(View view)
+    {
+        datePickerDialog.show();
+    }
+
+    private void initDatePicker(Button dateButton)
+    {
+
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+                String birthday = makeDateString(year, month, dayOfMonth);
+                dateButton.setText(birthday);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+    }
+
+    public void checkButton(View view) // Turns RadioButton into String for mySQL
+    {
+        RadioGroup driveEdit = findViewById(R.id.driverInput);
+
+        int radioID = driveEdit.getCheckedRadioButtonId();
+        RadioButton radioButton = findViewById(radioID);
+        driverBool = null; // to have a default
+
+        if(radioButton == findViewById(R.id.dYes1))
+        {
+            driverBool = "TRUE";
+        }
+        else if(radioButton == findViewById(R.id.dNo2))
+        {
+            driverBool = "FALSE";
+        }
+    }
+
 }
