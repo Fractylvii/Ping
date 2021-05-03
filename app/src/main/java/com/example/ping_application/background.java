@@ -21,6 +21,7 @@ import java.net.URLEncoder;
 public class background extends AsyncTask <String, Void, String> {
 
     private boolean loginSuccess;
+    private CurrentUser curruser;
 
     AlertDialog dialog;
     Context context;
@@ -41,7 +42,7 @@ public class background extends AsyncTask <String, Void, String> {
         dialog.show();
 
         if(loginSuccess == true) {
-            Intent intent = new Intent(context, MainActivity.class);
+            Intent intent = new Intent(context, MainActivity.class).putExtra("currUser",curruser);;
             context.startActivity(intent);
         }
     }
@@ -51,10 +52,11 @@ public class background extends AsyncTask <String, Void, String> {
         String result = "";
         String user = voids[0];
         String pass = voids[1];
+        String[] userinfo = new String[6];
 
         loginSuccess = false; // Default
 
-        String connstr = "http://BLAH/login.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
+        String connstr = "http://100.64.7.226/login.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
 
         try {
             URL url = new URL(connstr);
@@ -77,10 +79,42 @@ public class background extends AsyncTask <String, Void, String> {
             BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1")); //ENCODING SCHEME (ISO)
 
             String line = "";
+            int linecount = 0;
             while ((line = reader.readLine()) != null)
             {
-                result += line;
+                if(linecount == 0) {
+                    result += line;
+                    linecount++;
+                }
+                else {
+                    userinfo[linecount - 1] = line;
+                    linecount++;
+                }
             }
+
+            curruser = new CurrentUser();
+
+            for(int i = 0; i < 6; i++) {
+                if(i == 0) {
+                    curruser.setUsername(userinfo[i]);
+                }
+                else if (i == 1) {
+                    curruser.setPassword(userinfo[i]);
+                }
+                else if (i == 2) {
+                    curruser.setFullName(userinfo[i]);
+                }
+                else if(i == 3) {
+                    curruser.setBirthday(userinfo[i]);
+                }
+                else if(i == 4) {
+                    curruser.setPhoneNum(userinfo[i]);
+                }
+                else if(i == 5) {
+                    curruser.setDriverBool(userinfo[i]);
+                }
+            }
+
             reader.close();
             ips.close();
             http.disconnect();

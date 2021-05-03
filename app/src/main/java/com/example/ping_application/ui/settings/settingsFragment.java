@@ -22,4 +22,8 @@ public class settingsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
         return root;
     }
+
+
+
+
 }

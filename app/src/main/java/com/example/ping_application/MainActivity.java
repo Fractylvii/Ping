@@ -19,11 +19,23 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.time.LocalDate;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private CurrentUser currentUser;
 
-
+    TextView accName;
+    TextView accBirth;
+    TextView accPhone;
+    TextView accDriver;
+    EditText fullEdit;
+    EditText birthEdit;
+    EditText phoneEdit;
+    RadioGroup driveEdit;
+    RadioButton driveYes;
+    RadioButton driveNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +54,31 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        currentUser = getIntent().getExtras().getParcelable("currUser");
+
+       /* accName = findViewById(R.id.AccountName);
+        accBirth = findViewById(R.id.AccountBirthday);
+        accPhone = findViewById(R.id.AccountPhoneNumber);
+        accDriver = findViewById(R.id.AccountDriver);
+        fullEdit = findViewById(R.id.nameInput);
+        birthEdit = findViewById(R.id.birthdayInput);
+        phoneEdit = findViewById(R.id.phoneInput);
+        driveEdit = findViewById(R.id.driverInput);
+        driveYes = findViewById(R.id.dYes1);
+        driveNo = findViewById(R.id.dNo2);
+
+        currentUser.printAllInfo();
+
+        accName.setText(currentUser.getFullName());
+        accBirth.setText(getDateString(currentUser.getBirthday()));
+        accPhone.setText(currentUser.getPhoneNum());
+        if(currentUser.getDriverBool().equals("TRUE")) {
+            accDriver.setText("Yes");
+        }
+        else {
+            accDriver.setText("No");
+        } */
     }
     
     @Override
@@ -63,26 +100,14 @@ public class MainActivity extends AppCompatActivity {
         params1.topMargin = 50;
         findViewById(R.id.nameInput).setLayoutParams(params1);
 
-        TextView text1 = findViewById(R.id.AccountName);
-        TextView text2 = findViewById(R.id.AccountBirthday);
-        TextView text3 = findViewById(R.id.AccountPhoneNumber);
-        TextView text4 = findViewById(R.id.AccountDriver);
-        EditText text5 = findViewById(R.id.nameInput);
-        EditText text6 = findViewById(R.id.birthdayInput);
-        EditText text7 = findViewById(R.id.phoneInput);
-        RadioButton text8 = findViewById(R.id.dYes1);
-        RadioButton text9 = findViewById(R.id.dNo2);
-
-
-
-        text5.setText(text1.getText());
-        text6.setText(text2.getText());
-        text7.setText(text3.getText());
-        if(text4.getText().equals("No")){
-            text9.setChecked(true);
+        fullEdit.setText(accName.getText());
+        birthEdit.setText(accBirth.getText());
+        phoneEdit.setText(accPhone.getText());
+        if(accDriver.getText().equals("No")) {
+            driveNo.setChecked(true);
         }
-        else{
-            text8.setChecked(true);
+        else {
+            driveYes.setChecked(true);
         }
 
         ViewGroup.MarginLayoutParams params2 = (ViewGroup.MarginLayoutParams) findViewById(R.id.AccountName).getLayoutParams();
@@ -95,26 +120,76 @@ public class MainActivity extends AppCompatActivity {
         params1.topMargin = 5000;
         findViewById(R.id.nameInput).setLayoutParams(params1);
 
-        TextView text1 = findViewById(R.id.AccountName);
-        TextView text2 = findViewById(R.id.AccountBirthday);
-        TextView text3 = findViewById(R.id.AccountPhoneNumber);
-        TextView text4 = findViewById(R.id.AccountDriver);
-        EditText text5 = findViewById(R.id.nameInput);
-        EditText text6 = findViewById(R.id.birthdayInput);
-        EditText text7 = findViewById(R.id.phoneInput);
-        RadioGroup text8 = findViewById(R.id.driverInput);
-        int selectedRadioButtonId = text8.getCheckedRadioButtonId();
+        int selectedRadioButtonId = driveEdit.getCheckedRadioButtonId();
 
-        text1.setText(text5.getText());
-        text2.setText(text6.getText());
-        text3.setText(text7.getText());
+        accName.setText(fullEdit.getText());
+        accBirth.setText(birthEdit.getText());
+        accPhone.setText(phoneEdit.getText());
         RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
         String selectedRbText = selectedRadioButton.getText().toString();
-        text4.setText(selectedRbText);
-
+        accDriver.setText(selectedRbText);
 
         ViewGroup.MarginLayoutParams params2 = (ViewGroup.MarginLayoutParams) findViewById(R.id.AccountName).getLayoutParams();
         params2.topMargin = 120;
         findViewById(R.id.AccountName).setLayoutParams(params2);
+    }
+
+    private String makeDateString(int year, int month, int dayOfMonth)
+    {
+        String dateofbirth = year + "-" + month + "-" + dayOfMonth; //Formatted to pass to database
+        String birthStr = getDateString(dateofbirth);
+        return birthStr;
+    }
+
+    private static String getDateString(String sqlDate)
+    {
+        String[] dateParts = sqlDate.split("-");
+        String year = dateParts[0];
+        int month = Integer.parseInt(dateParts[1]);
+        String dayOfMonth = dateParts[2];
+        String monthstr = "";
+
+        switch(month)
+        {
+            case 1:
+                monthstr = "January";
+                break;
+            case 2:
+                monthstr = "February";
+                break;
+            case 3:
+                monthstr = "March";
+                break;
+            case 4:
+                monthstr = "April";
+                break;
+            case 5:
+                monthstr = "May";
+                break;
+            case 6:
+                monthstr = "June";
+                break;
+            case 7:
+                monthstr = "July";
+                break;
+            case 8:
+                monthstr = "August";
+                break;
+            case 9:
+                monthstr = "September";
+                break;
+            case 10:
+                monthstr = "October";
+                break;
+            case 11:
+                monthstr = "November";
+                break;
+            case 12:
+                monthstr = "December";
+                break;
+            default:
+                break;
+        }
+        return monthstr + " " + dayOfMonth + ", " + year;
     }
 }

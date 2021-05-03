@@ -54,9 +54,7 @@ public class userbackground extends AsyncTask <String, Void, String> {
         String phoneNum = voids[4];
         String driverBool = voids[5];
 
-
-
-        String connstr = "http://BLAH/createuser.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
+        String connstr = "http://100.64.7.226/createuser.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
 
         try {
             URL url = new URL(connstr);
