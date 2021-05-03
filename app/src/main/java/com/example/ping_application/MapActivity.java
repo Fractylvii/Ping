@@ -18,15 +18,17 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import Ping.Account;
 
-public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
+public class MapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener{
 
     GoogleMap map;
-
+    private Marker myMarker;//for use with marker onclick listener
     private LocationListener LocationListener;
     private LocationManager locationManager;
 
@@ -74,7 +76,18 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
         map.addMarker(new MarkerOptions() .position(Lubbock).title("Lubbock"));
         map.addMarker(new MarkerOptions() .position(Uclub).title("Uclub"));
         map.moveCamera(CameraUpdateFactory.newLatLng(Lubbock));
-
+       
+        
+        
+        googleMap.setOnMarkerClickListener(this);//listener for 'click' on the marker (tapping), NEED it for having the marker->send message functionality
+        
+        //This is a template
+        myMarker = googleMap.addMarker(new MarkerOptions()
+                .position(Lubbock) //Which marker it's referring to, probably a person and not the city. argument is LatLng
+                .title("Lubbock or other title")// Main title, person's name maybe
+                .snippet("Information goes here") //this could probably be the person's information
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));// changes the color of the pin icon
+        //end of template
 
         LocationListener = new LocationListener(){
             @Override
@@ -144,4 +157,26 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback{
         }
 
         }
+    @Override
+    public boolean onMarkerClick(final Marker marker) { // could pass latitude longitude arguments here or maybe use the class variables?
+
+        if (marker.equals(myMarker)){
+            try {//
+                SmsManager smsManager = SmsManager.getDefault();
+                String phoneNumber= "5554"; //testing - use two emulators, port numbers = the phone number. set this equal to the emulator you want to send a message to.
+                
+                // for testing , uses Texas Tech University/Coordinates
+                //33.5843° N, 101.8783 W
+                String lat = String.valueOf(33.5843); //testing change this value to whatever value you want later, e.g. the phone number from server/valid user
+                String lng = String.valueOf(101.8783); //testing ^
+                String message = "I need a ride: " + "http://maps.google.com/?q="+lat+"N"+lng+"W"; //for sending a text message, tested on 2 emulators, but should work irl. sends a uri for google maps (app or browser) for gps services.
+                smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+                Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_LONG).show();
+            } catch(Exception e1){
+                Toast.makeText(getApplicationContext(),"Message Unable To Be Sent",Toast.LENGTH_LONG).show();
+
+            }
+        }
+        return false; //just kinda auto-generated this way, don't mess with unless you know
     }
+}
