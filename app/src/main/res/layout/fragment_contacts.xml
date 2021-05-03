@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ContactsActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView4"
@@ -40,18 +39,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/frameLL"
+    <TextView
+        android:id="@+id/contactsTextView"
+        android:name="com.example.ping_application.AddedFragment"
         android:layout_width="394dp"
         android:layout_height="504dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/addContactsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        android:name="com.example.ping_application.AddedFragment">
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-    </androidx.fragment.app.FragmentContainerView>
+    </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ping_application.MapActivity;
+import com.example.ping_application.MapActivityETA;
 import com.example.ping_application.R;
 
 public class mapFragment extends Fragment {
@@ -29,7 +29,7 @@ public class mapFragment extends Fragment {
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MapActivity.class));
+                startActivity(new Intent(getActivity(), MapActivityETA.class));
             }
         });
 

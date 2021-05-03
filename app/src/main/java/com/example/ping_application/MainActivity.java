@@ -23,7 +23,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_bigButton, R.id.nav_contacts, R.id.nav_settings, R.id.nav_map)
+                R.id.nav_home, R.id.nav_bigButton, R.id.nav_contacts, R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
