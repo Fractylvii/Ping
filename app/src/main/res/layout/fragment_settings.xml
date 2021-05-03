@@ -39,7 +39,6 @@
         android:layout_marginRight="16dp"
         android:layout_weight="1"
         android:paddingLeft="10dp"
-        android:text="Ryan Browning"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -65,7 +64,6 @@
         android:layout_marginRight="16dp"
         android:layout_weight="1"
         android:paddingLeft="10dp"
-        android:text="806-420-6969"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AccountBirthday" />
@@ -91,7 +89,6 @@
         android:layout_marginRight="16dp"
         android:layout_weight="1"
         android:paddingLeft="10dp"
-        android:text="March 30, 1999"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AccountName" />
@@ -117,7 +114,6 @@
         android:layout_marginRight="16dp"
         android:layout_weight="1"
         android:paddingLeft="10dp"
-        android:text="No"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AccountPhoneNumber" />
