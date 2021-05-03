@@ -28,7 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
-    //com.google.android.material.textfield.TextInputEditText
     <Button
         android:id="@+id/datePickerButton"
         android:layout_width="300dp"

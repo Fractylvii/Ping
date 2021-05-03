@@ -1,6 +1,5 @@
 package com.example.ping_application;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,20 +11,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class background extends AsyncTask <String, Void, String> {
+public class updatebackground extends AsyncTask <String, Void, String> {
 
-    private boolean loginSuccess;
-    private CurrentUser curruser;
+    private boolean updateSuccess;
 
     AlertDialog dialog;
     Context context;
-    public background(Context context)
+    public updatebackground(Context context)
     {
         this.context = context;
     }
@@ -33,30 +30,33 @@ public class background extends AsyncTask <String, Void, String> {
     @Override
     protected void onPreExecute() {
         dialog = new AlertDialog.Builder(context).create();
-        dialog.setTitle("Login Status");
+        dialog.setTitle("Update Info Status");
     }
 
     @Override
     protected void onPostExecute(String s) {
         dialog.setMessage(s);
         dialog.show();
-
-        if(loginSuccess == true) {
-            Intent intent = new Intent(context, MainActivity.class).putExtra("currUser", curruser);
-            context.startActivity(intent);
-        }
     }
 
     @Override
     protected String doInBackground(String... voids) {
         String result = "";
-        String user = voids[0];
-        String pass = voids[1];
-        String[] userinfo = new String[6];
+        String fullName = voids[0];
+        String birthday = voids[1];
+        String phoneNum = voids[2];
+        String driverBool = voids[3];
+        String origName = voids[4];
+        String origPhone = voids[5];
 
-        loginSuccess = false; // Default
+        System.out.println(driverBool);
+        System.out.println(driverBool);
+        System.out.println(driverBool);
+        System.out.println(driverBool);
+        System.out.println(driverBool);
 
-        String connstr = "http://BLAH/login.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
+
+        String connstr = "http://BLAH/updateuser.php"; // Replace BLAH with IPv4 address of computer hosting XAMPP server
 
         try {
             URL url = new URL(connstr);
@@ -65,10 +65,16 @@ public class background extends AsyncTask <String, Void, String> {
             http.setDoInput(true);
             http.setDoOutput(true);
 
+            updateSuccess = false; // Default
+
             OutputStream ops = http.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
-            String data = URLEncoder.encode("user", "UTF-8")+"="+URLEncoder.encode(user, "UTF-8")
-                    +"&&"+URLEncoder.encode("pass", "UTF-8")+"="+URLEncoder.encode(pass, "UTF-8");
+            String data = URLEncoder.encode("fullName", "UTF-8")+"="+URLEncoder.encode(fullName, "UTF-8")
+                    +"&&"+URLEncoder.encode("birthday", "UTF-8")+"="+URLEncoder.encode(birthday, "UTF-8")
+                    +"&&"+URLEncoder.encode("phoneNum", "UTF-8")+"="+URLEncoder.encode(phoneNum, "UTF-8")
+                    +"&&"+URLEncoder.encode("driverBool", "UTF-8")+"="+URLEncoder.encode(driverBool, "UTF-8")
+                    +"&&"+URLEncoder.encode("origName", "UTF-8")+"="+URLEncoder.encode(origName, "UTF-8")
+                    +"&&"+URLEncoder.encode("origPhone", "UTF-8")+"="+URLEncoder.encode(origPhone, "UTF-8");
 
             writer.write(data);
             writer.flush();
@@ -79,52 +85,22 @@ public class background extends AsyncTask <String, Void, String> {
             BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1")); //ENCODING SCHEME (ISO)
 
             String line = "";
-            int linecount = 0;
             while ((line = reader.readLine()) != null)
             {
-                if(linecount == 0) {
                     result += line;
-                    linecount++;
-                }
-                else {
-                    userinfo[linecount - 1] = line;
-                    linecount++;
-                }
-            }
-
-            curruser = new CurrentUser();
-
-            for(int i = 0; i < 6; i++) {
-                if(i == 0) {
-                    curruser.setUsername(userinfo[i]);
-                }
-                else if (i == 1) {
-                    curruser.setPassword(userinfo[i]);
-                }
-                else if (i == 2) {
-                    curruser.setFullName(userinfo[i]);
-                }
-                else if(i == 3) {
-                    curruser.setBirthday(userinfo[i]);
-                }
-                else if(i == 4) {
-                    curruser.setPhoneNum(userinfo[i]);
-                }
-                else if(i == 5) {
-                    curruser.setDriverBool(userinfo[i]);
-                }
             }
 
             reader.close();
             ips.close();
             http.disconnect();
 
-            if(result.equals("Login successful!"))
+            if(result.equals("Update successful!"))
             {
-                loginSuccess = true;
+                updateSuccess = true;
             }
 
             return result;
+
         }
         catch (MalformedURLException e) {
             result = e.getMessage();

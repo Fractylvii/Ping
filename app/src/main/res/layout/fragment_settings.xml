@@ -145,19 +145,23 @@
         android:layout_marginTop="5000dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:inputType="text"
         android:hint="hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <Button
         android:id="@+id/birthdayInput"
         android:layout_width="238dp"
         android:layout_height="39dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:textColor="@color/black"
+        style="?android:spinnerStyle"
         android:hint="hint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/nameInput"
+        android:onClick="birthdayPicker"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/phoneInput"
@@ -165,6 +169,7 @@
         android:layout_height="39dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:inputType="phone"
         android:hint="hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthdayInput" />
@@ -184,7 +189,9 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Yes" />
+            android:buttonTint="@color/black"
+            android:text="Yes"
+             android:onClick="checkButton"/>
 
         <Space
             android:layout_width="39dp"
@@ -196,7 +203,9 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="No" />
+            android:buttonTint="@color/black"
+            android:text="No"
+            android:onClick="checkButton"/>
 
     </RadioGroup>
 
